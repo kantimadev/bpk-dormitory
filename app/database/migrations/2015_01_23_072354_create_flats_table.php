@@ -14,8 +14,9 @@ class CreateFlatsTable extends Migration {
 	{
 		Schema::create('flats', function(Blueprint $table)
 		{
-				$table->string('number')->unique();
+				$table->integer('number');
 				$table->string('type');
+				$table->string('name')->unique();
 		});
 	}
 
