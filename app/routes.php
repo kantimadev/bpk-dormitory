@@ -13,17 +13,18 @@ Route::get('/', function()
 				$flat = new Flat;
 				$flat->number = $i;
 				$flat->type = 'ข';
+				$flat->name = $i.'. ข';
 				$flat->save();
 			}
 			for ($j = 23; $j <= 37; $j++){
 				$flat = new Flat;
 				$flat->number = $j;
 				$flat->type = 'ค';
+				$flat->name = $j.'. ค';
 				$flat->save();
 			}
-	} else {
-		return Flat::all();
 	}
-
+	
+	return Flat::all();
 
 });
