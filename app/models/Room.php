@@ -6,4 +6,8 @@ class Room extends Eloquent {
 
   protected $table = 'rooms';
 
+  // public function flat()
+  // {
+  //   return $this->belongsTo('Flat');
+  // }
 }

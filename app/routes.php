@@ -13,24 +13,27 @@ Route::get('/', function()
 
 Route::get('/init', function()
 {
+
+	/**init Flat table**/
 	if (Flat::all()->count() == null) {
 
 		for ($i = 1; $i <= 33; $i++){
 			$flat = new Flat;
 			$flat->number = $i;
 			$flat->type = 'ข';
-			$flat->name = $i.'. ข';
+			$flat->name = 'ข.'.$i;
 			$flat->save();
 		}
 		for ($j = 23; $j <= 37; $j++){
 			$flat = new Flat;
 			$flat->number = $j;
 			$flat->type = 'ค';
-			$flat->name = $j.'. ค';
+			$flat->name = 'ค.'.$j;
 			$flat->save();
 		}
 	}
 
+	/**init Room table**/
 	if (Room::all()->count() == null) {
 		$counter=1;
 		$floor=1;
@@ -65,5 +68,27 @@ Route::get('/init', function()
 		}
 	}
 
-	return Flat::all();
+	/**init Dorm table**/
+	if (Dorm::all()->count() == null) {
+		$dorms = DB::table('flats')
+						->join('rooms', 'flats.type', '=', 'rooms.type')
+						->select(DB::raw('CONCAT(flats.name, "-", rooms.number) as roomName, flats.name as flatName, flats.number as flatNumber, flats.type as flatType, rooms.number as roomNumber, rooms.floor as floor'))
+						->orderBy('flatNumber','roomNumber','flatType')
+						->get();
+
+		foreach($dorms as $dorm){
+			$d = new Dorm;
+			$d->roomName = $dorm->roomName;
+			$d->flatName = $dorm->flatName;
+			$d->flatNumber = $dorm->flatNumber;
+			$d->flatType = $dorm->flatType;
+			$d->roomNumber = $dorm->roomNumber;
+			$d->floor = $dorm->floor;
+			$d->save();
+		}
+	}
+
+
+	return Dorm::all();
+
 });

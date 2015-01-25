@@ -6,7 +6,7 @@ class Flat extends Eloquent {
 
   protected $table = "flats";
 
-  // public function room()
+  // public function rooms()
   // {
   //   return $this->hasMany('Room');
   // }
