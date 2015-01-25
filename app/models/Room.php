@@ -2,6 +2,8 @@
 
 class Room extends Eloquent {
 
-  protected $table = 'room';
-  
+  public $timestamps = false;
+
+  protected $table = 'rooms';
+
 }
