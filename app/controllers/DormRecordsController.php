@@ -9,9 +9,14 @@ class DormRecordsController extends \BaseController {
 	 */
 	public function index()
 	{
-		$dorms = Dorm::all();
+		// $flatNames = Flat::where('type', 'ข')->orderBy('number','asc')->get()->lists('name');
+		// $flats = Flat::orderBy('number','asc')->get();
+		$flatDefaults = Flat::where('type', '=', 'ข')->orderBy('number','asc')->get();
 
-		return View::make('dormRecord')->with('dorms', $dorms);
+		// return $flatDefault;
+
+		return View::make('dormRecord')->with('flatDefaults', $flatDefaults);
+		// return $flats;
 	}
 
 
