@@ -9,13 +9,19 @@ class DormRecordsController extends \BaseController {
 	 */
 	public function index()
 	{
+
+		// $flatDefaults = Flat::where('type', '=', 'ข')->orderBy('number','asc')->get();
+		// return View::make('dormRecord')->with('flatDefaults', $flatDefaults);
+
+		// $dormRecords = Flat::where('type', '=', 'ข')->orderBy('number','asc')->get();
+		$dormRecords = DormRecord::all();
+
+		return View::make('dormRecords.index')->with('dormRecords', $dormRecords);;
+
+
 		// $flatNames = Flat::where('type', 'ข')->orderBy('number','asc')->get()->lists('name');
 		// $flats = Flat::orderBy('number','asc')->get();
-		$flatDefaults = Flat::where('type', '=', 'ข')->orderBy('number','asc')->get();
 
-		// return $flatDefault;
-
-		return View::make('dormRecord')->with('flatDefaults', $flatDefaults);
 		// return $flats;
 	}
 
@@ -48,9 +54,11 @@ class DormRecordsController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id)
+	public function show($roomName)
 	{
-		//
+		$dormRecord = DormRecord::where('roomName', $roomName)->first();
+
+		return View::make('dormRecords.show')->with('dormRecord', $dormRecord);
 	}
 
 
