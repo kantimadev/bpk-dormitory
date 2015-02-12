@@ -33,7 +33,7 @@ class DormRecordsController extends \BaseController {
 	 */
 	public function create()
 	{
-		//
+		return View::make('dormRecords.create');
 	}
 
 

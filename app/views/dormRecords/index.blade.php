@@ -24,7 +24,7 @@
             <tr>
           @endforeach
         @else
-          <p>Unfortunately, there are no records. </p>
+          <p>Unfortunately, there are no records.</p>
         @endif
       </table>
 
